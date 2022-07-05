@@ -1,0 +1,11 @@
+.main {
+    padding: 30px 0;
+    background-color: var(--greyE6);
+    height: 100vh;
+}
+
+@media (min-width: 768px) {
+    .main {
+        padding: 50px 0;
+    }
+}

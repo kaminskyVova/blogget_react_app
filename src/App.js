@@ -1,12 +1,13 @@
-import { Button } from "./components/Button/Button";
+import { Header } from "./components/Header/Header";
+import {Main} from './components/Main/Main'
 
 
 function App() {
   return (
-    <header className="App-header">
-      <p>Hello React</p>
-      <Button text={'Click Me'} />
-    </header>
+    <>
+      <Header />
+      <Main />
+    </>
   );
 }
 
