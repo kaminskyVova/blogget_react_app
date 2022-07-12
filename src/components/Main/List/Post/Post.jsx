@@ -15,10 +15,6 @@ export const Post = ({ postData }) => {
 			<PostContent title={title} author={author} />
 			<Rating ups={ups} />
 			<PostTime date={date} />
-
-			{/* <time className={styles.date} dateTime={date}>
-				{formatDate(date)}
-			</time> */}
 		</li>
 	);
 };
