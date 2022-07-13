@@ -8,6 +8,7 @@ import { ReactComponent as TopIcon } from './img/top.svg';
 import { ReactComponent as BestIcon } from './img/best.svg';
 import { ReactComponent as HotIcon } from './img/hot.svg';
 import { debounceRaf } from './../../../utils/debounce';
+import { Text } from './../../../UI/Text/Text';
 
 export const Tabs = () => {
 	const LIST = [
@@ -53,7 +54,10 @@ export const Tabs = () => {
 						className={styles.btn}
 						onClick={() => setIsDropdownOpen(!isDropdownOpen)}
 					>
-						{btnText}
+						{' '}
+						<Text As="span" fwsize={900}>
+							{btnText}
+						</Text>
 						{BtnIcon && <BtnIcon width={35} height={35} />}
 						<ArrowIcon width={15} height={15} />
 					</button>
@@ -70,7 +74,9 @@ export const Tabs = () => {
 									handleClick(value, Icon);
 								}}
 							>
-								{value}
+								<Text As="span" fwsize={900}>
+									{value}
+								</Text>
 								{Icon && <Icon width={35} height={35} />}
 							</button>
 						</li>

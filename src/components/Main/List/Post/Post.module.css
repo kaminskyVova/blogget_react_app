@@ -127,7 +127,6 @@
 }
 
 .linkAuthor {
-  color: var(--orange);
   position: relative;
   overflow: hidden;
   -webkit-line-clamp: 2;

@@ -1,17 +1,32 @@
 import styles from '../Post.module.css';
 import { BtnDel } from './BtnDel/BtnDel';
+import { Text } from './../../../../../UI/Text/Text';
 
 export const PostContent = ({ title, author }) => {
 	return (
 		<div className={styles.content}>
-			<h2 className={styles.title}>
-				<a className={styles.linkPost} href="#post">
+			<Text As="h2" className={styles.title}>
+				<Text
+					As="a"
+					size={18}
+					tsize={24}
+					className={styles.linkPost}
+					href="#post"
+				>
 					{title}
-				</a>
-			</h2>
-			<a className={styles.linkAuthor} href="#author">
+				</Text>
+			</Text>
+			<Text
+				As="a"
+				size={12}
+        fwsize={500}
+				tsize={14}
+				color="orange"
+				className={styles.linkAuthor}
+				href="#author"
+			>
 				{author}
-			</a>
+			</Text>
 			<BtnDel />
 		</div>
 	);
