@@ -1,32 +1,38 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { URL_API } from './../api/const';
 
-export const useAuth = (urlApi, setAuth, token, delToken) => {
+export const useAuth = (token) => {
+	const [auth, setAuth] = useState({});
+
 	useEffect(() => {
 		if (!token) return;
 
 		try {
-			fetch(`${urlApi}/api/v1/me`, {
+			fetch(`${URL_API}/api/v1/me`, {
 				headers: {
 					Authorization: `bearer ${token}`,
 				},
 			}).then((response) => {
 				if (response.status === 401) {
-					console.log('Ошибка статус 401');
-					delToken();
 					setAuth({});
-				} else if (response.status === 200) {
-					response.json().then(({ name, icon_img: iconImg }) => {
-						if (name) {
-							const img = iconImg.replace(/\?.*$/, '');
-							setAuth({ name, img });
-						}
-					});
+					throw new Error(response.status);
+					// delToken();
 				}
+				response.json().then(({ name, icon_img: iconImg }) => {
+					if (name) {
+						const img = iconImg.replace(/\?.*$/, '');
+						setAuth({ name, img });
+					}
+				});
 			});
 		} catch (err) {
-			console.err(err);
-			delToken();
+			console.error(err);
+			// delToken();
 			setAuth({});
 		}
-	}, [urlApi, setAuth, token, delToken]);
+	}, [token]);
+
+	const clearAuth = () => setAuth({});
+
+	return [auth, clearAuth];
 };
