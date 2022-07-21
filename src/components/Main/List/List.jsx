@@ -1,7 +1,12 @@
 import styles from './List.module.css';
 import { Post } from './Post/Post';
+import { useContext } from 'react';
+import { tokenContext } from './../../../context/tokenContext';
+import { useBestPosts } from './../../../hooks/useBestPosts';
 
 export const List = (props) => {
+	const {token} = useContext(tokenContext)
+	const [bestPosts] = useBestPosts(token)
 	const postsData = [
 		{
 			thumbnail: '',
