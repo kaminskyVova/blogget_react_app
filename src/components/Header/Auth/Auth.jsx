@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styles from './Auth.module.css';
 import PropTypes from 'prop-types';
 import { ReactComponent as LoginIcon } from './img/login.svg';
 import { urlAuth } from './../../../api/auth';
 import { Text } from './../../../UI/Text/Text';
-import { useAuth } from './../../../hooks/useAuth';
+import { tokenContext } from './../../../context/tokenContext';
+import { authContext } from './../../../context/authContext';
 
-export const Auth = ({ token, delToken }) => {
-	const [auth, clearAuth] = useAuth(token);
+export const Auth = () => {
+	const { delToken } = useContext(tokenContext);
 	const [logout, setLogout] = useState(false);
+	const {auth, clearAuth} = useContext(authContext)
 
 	const handlerClickLogin = () => {
 		if (logout === true) setLogout(false);

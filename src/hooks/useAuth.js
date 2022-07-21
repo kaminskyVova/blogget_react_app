@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { URL_API } from './../api/const';
+import { tokenContext } from './../context/tokenContext';
 
-export const useAuth = (token) => {
+export const useAuth = () => {
+	const { token, delToken } = useContext(tokenContext);
 	const [auth, setAuth] = useState({});
 
 	useEffect(() => {
@@ -16,7 +18,6 @@ export const useAuth = (token) => {
 				if (response.status === 401) {
 					setAuth({});
 					throw new Error(response.status);
-					// delToken();
 				}
 				response.json().then(({ name, icon_img: iconImg }) => {
 					if (name) {
@@ -27,7 +28,7 @@ export const useAuth = (token) => {
 			});
 		} catch (err) {
 			console.error(err);
-			// delToken();
+			delToken();
 			setAuth({});
 		}
 	}, [token]);
