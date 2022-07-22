@@ -3,10 +3,12 @@ import { Post } from './Post/Post';
 import { useContext } from 'react';
 import { tokenContext } from './../../../context/tokenContext';
 import { useBestPosts } from './../../../hooks/useBestPosts';
+import { bestPostsContext } from './../../../context/bestPostsContext';
 
 export const List = (props) => {
-	const {token} = useContext(tokenContext)
-	const [bestPosts] = useBestPosts(token)
+	// const [bestPosts] = useBestPosts()
+	const {bestPosts} = useContext(bestPostsContext)
+	// console.log('bestPosts: ', bestPosts);
 	const postsData = [
 		{
 			thumbnail: '',

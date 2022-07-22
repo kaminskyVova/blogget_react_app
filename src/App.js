@@ -2,17 +2,16 @@ import { Header } from './components/Header/Header';
 import { Main } from './components/Main/Main';
 import { TokenContextProvider } from './context/tokenContext';
 import { AuthContextProvider } from './context/authContext';
-import { useBestPosts } from './hooks/useBestPosts';
-
-
+import { BestPostsContextProvider } from './context/bestPostsContext';
 
 function App() {
-	
 	return (
 		<TokenContextProvider value={{}}>
 			<AuthContextProvider value={{}}>
-				<Header />
-				<Main />
+				<BestPostsContextProvider value={{}}>
+					<Header />
+					<Main />
+				</BestPostsContextProvider>
 			</AuthContextProvider>
 		</TokenContextProvider>
 	);
