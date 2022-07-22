@@ -1,5 +1,5 @@
 ---
-to: <%= absPath %>/index.jsx;
+to: <%= absPath %>/index.jsx
 ---
 
 import {<%= component_name %>} from './<%= component_name %>';
