@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { URL_API } from './../api/const';
 import { tokenContext } from './../context/tokenContext';
-import { useBestPosts } from './useBestPosts';
 
 export const useAuth = () => {
 	const { token, delToken } = useContext(tokenContext);
@@ -32,7 +31,7 @@ export const useAuth = () => {
 			delToken();
 			setAuth({});
 		}
-	}, [token]);
+	}, [token, delToken]);
 
 	const clearAuth = () => setAuth({});
 
