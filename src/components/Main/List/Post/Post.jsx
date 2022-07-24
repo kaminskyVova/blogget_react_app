@@ -7,12 +7,13 @@ import { PostTime } from './PostTime/PostTime';
 import { Thumbnail } from './Thumbnail/Thumbnail';
 
 export const Post = ({ postData }) => {
-	const { thumbnail, title, author, ups, created: date } = postData;
+	// console.log('postData: ', postData);
+	const { thumbnail, title, author, ups, created: date, selftext: markdown, } = postData;
 
 	return (
 		<li className={styles.post}>
 			<Thumbnail thumbnail={thumbnail} title={title} />
-			<PostContent title={title} author={author} />
+			<PostContent title={title} author={author} markdown={markdown} />
 			<Rating ups={ups} />
 			<PostTime date={date} />
 		</li>

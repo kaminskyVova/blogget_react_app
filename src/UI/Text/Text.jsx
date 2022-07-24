@@ -6,12 +6,13 @@ export const Text = (props) => {
 		As = 'span',
 		color = 'black',
 		size,
-    fwsize,
+		fwsize,
 		tsize,
 		dsize,
 		className,
 		children,
 		href,
+		onClick,
 	} = props;
 
 	const classes = classNames(
@@ -20,11 +21,11 @@ export const Text = (props) => {
 		style[color],
 		{ [style[`fst${tsize}`]]: tsize },
 		{ [style[`dst${dsize}`]]: dsize },
-    { [style[`fw${fwsize}`]]: fwsize },
+		{ [style[`fw${fwsize}`]]: fwsize }
 	);
 
 	return (
-		<As className={classes} href={href}>
+		<As className={classes} href={href} onClick={onClick}>
 			{children}
 		</As>
 	);
