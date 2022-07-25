@@ -4,8 +4,18 @@ import { Text } from './../../../../../UI/Text/Text';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from './../../../../Modal/Modal';
+import Comments from '../../../../Comments/index';
+import { FormComment } from '../../../../FormComment/FormComment';
 
-export const PostContent = ({ title, author, markdown }) => {
+export const PostContent = ({ title, author, markdown, comments }) => {
+	// if(comments) {
+	// 	comments.forEach(item => {
+	// 		console.log('Автор',item.author);
+	// 		console.log('Текст',item.body);
+	// 		console.log('Время',item.created_utc);
+	// 	})
+	// }
+
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	return (
@@ -35,6 +45,7 @@ export const PostContent = ({ title, author, markdown }) => {
 			>
 				{author}
 			</Text>
+
 			{isModalOpen && (
 				<Modal
 					title={title}
@@ -45,6 +56,17 @@ export const PostContent = ({ title, author, markdown }) => {
 					}}
 				/>
 			)}
+			<FormComment />
+			<Text As="ul" style={{ padding: '15px 0' }}>
+				{comments ?
+					comments.map((item) => {
+						<Comments
+							author={item.author}
+							text={item.body}
+							date={item.created_utc}
+						/>;
+					}) : 'Loading...'}
+			</Text>
 			<BtnDel />
 		</div>
 	);

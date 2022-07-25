@@ -5,15 +5,28 @@ import { PostContent } from './PostContent/PostContent';
 import { Rating } from './Rating/Rating';
 import { PostTime } from './PostTime/PostTime';
 import { Thumbnail } from './Thumbnail/Thumbnail';
+import { useCommentsData } from '../../../../hooks/useCommentsData';
 
 export const Post = ({ postData }) => {
-	// console.log('postData: ', postData);
-	const { thumbnail, title, author, ups, created: date, selftext: markdown, } = postData;
+	const [post, comments] = useCommentsData(postData.id);
+	const {
+		thumbnail,
+		title,
+		author,
+		ups,
+		created: date,
+		selftext: markdown,
+	} = postData;
 
 	return (
 		<li className={styles.post}>
 			<Thumbnail thumbnail={thumbnail} title={title} />
-			<PostContent title={title} author={author} markdown={markdown} />
+			<PostContent
+				title={title}
+				author={author}
+				markdown={markdown}
+				comments={comments}
+			/>
 			<Rating ups={ups} />
 			<PostTime date={date} />
 		</li>
