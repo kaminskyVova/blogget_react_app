@@ -8,13 +8,21 @@ import Comments from '../../../../Comments/index';
 import { FormComment } from '../../../../FormComment/FormComment';
 
 export const PostContent = ({ title, author, markdown, comments }) => {
-	// if(comments) {
-	// 	comments.forEach(item => {
-	// 		console.log('Автор',item.author);
-	// 		console.log('Текст',item.body);
-	// 		console.log('Время',item.created_utc);
-	// 	})
-	// }
+	const showComments = () => {
+		let commentsArr = []
+		if (comments) {
+			comments.forEach((item) => {
+				commentsArr.push(
+					<Comments key={item.id}
+						author={item.author}
+						text={item.body}
+						date={item.created_utc}
+					/>
+				);
+			});
+		}
+		return commentsArr
+	};
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -57,16 +65,18 @@ export const PostContent = ({ title, author, markdown, comments }) => {
 				/>
 			)}
 			<FormComment />
-			<Text As="ul" style={{ padding: '15px 0' }}>
-				{comments ?
-					comments.map((item) => {
-						<Comments
-							author={item.author}
-							text={item.body}
-							date={item.created_utc}
-						/>;
-					}) : 'Loading...'}
-			</Text>
+			<ul style={{padding: '15px 0'}}>
+				{/* {comments
+					? comments.map((item) => {
+							<Comments
+								author={item.author}
+								text={item.body}
+								date={item.created_utc}
+							/>;
+					  })
+					: 'Loading...'} */}
+			{showComments()}
+			</ul>
 			<BtnDel />
 		</div>
 	);

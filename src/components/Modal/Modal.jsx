@@ -10,7 +10,7 @@ export const Modal = ({ title, author, markdown, closeModal }) => {
 	const closeBtnRef = useRef(null);
 
 	const handleClick = ({ target }) => {
-		console.log('target: ', target);
+
 		document.addEventListener('keydown', (e) => {
 			if (e.code === 'Escape') {
 				closeModal();
