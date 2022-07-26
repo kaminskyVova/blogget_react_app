@@ -25,6 +25,7 @@ export const PostContent = ({ title, author, markdown, id }) => {
 	// };
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const onClose = () => setIsModalOpen(false);
 
 	return (
 		<div className={styles.content}>
@@ -56,10 +57,8 @@ export const PostContent = ({ title, author, markdown, id }) => {
 
 			{isModalOpen && (
 				<Modal
-					// title={title}
-					// author={author}
-					// markdown={markdown}
 					id={id}
+					onClose={onClose}
 					closeModal={() => {
 						setIsModalOpen(false);
 					}}

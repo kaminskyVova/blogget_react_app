@@ -7,7 +7,7 @@ import { useCommentsData } from './../../hooks/useCommentsData';
 import { FormComment } from '../FormComment/FormComment';
 import {Comments} from '../Comments/Comments';
 
-export const Modal = ({ closeModal, id }) => {
+export const Modal = ({ closeModal, id, onClose }) => {
 	const overlayRef = useRef(null);
 	const closeBtnRef = useRef(null);
 	const [post, comments] = useCommentsData(id);
@@ -24,12 +24,13 @@ export const Modal = ({ closeModal, id }) => {
 		}
 	};
 
+
 	useEffect(() => {
 		document.addEventListener('click', handleClick);
 		return () => {
 			document.removeEventListener('click', handleClick);
 		};
-	}, []);
+	}, [closeModal]);
 
 	return ReactDOM.createPortal(
 		<div className={styles.overlay} ref={overlayRef}>
@@ -49,11 +50,10 @@ export const Modal = ({ closeModal, id }) => {
             {markdown}
           </Markdown> */}
 				</div>
-				{/* <p className={styles.author}>{author}</p> */}
 				<FormComment />
 				<Comments comments={comments} />
-				<button className={styles.close} >
-					<CloseIcon />
+				<button className={styles.close}  >
+					<CloseIcon onClick={onClose} />
 				</button>
 			</div>
 		</div>,
