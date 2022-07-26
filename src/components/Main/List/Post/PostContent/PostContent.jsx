@@ -7,22 +7,22 @@ import { Modal } from './../../../../Modal/Modal';
 import Comments from '../../../../Comments/index';
 import { FormComment } from '../../../../FormComment/FormComment';
 
-export const PostContent = ({ title, author, markdown, comments }) => {
-	const showComments = () => {
-		let commentsArr = []
-		if (comments) {
-			comments.forEach((item) => {
-				commentsArr.push(
-					<Comments key={item.id}
-						author={item.author}
-						text={item.body}
-						date={item.created_utc}
-					/>
-				);
-			});
-		}
-		return commentsArr
-	};
+export const PostContent = ({ title, author, markdown, id }) => {
+	// const showComments = () => {
+	// 	let commentsArr = []
+	// 	if (comments) {
+	// 		comments.forEach((item) => {
+	// 			commentsArr.push(
+	// 				<Comments key={item.id}
+	// 					author={item.author}
+	// 					text={item.body}
+	// 					date={item.created_utc}
+	// 				/>
+	// 			);
+	// 		});
+	// 	}
+	// 	return commentsArr
+	// };
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -56,16 +56,17 @@ export const PostContent = ({ title, author, markdown, comments }) => {
 
 			{isModalOpen && (
 				<Modal
-					title={title}
-					author={author}
-					markdown={markdown}
+					// title={title}
+					// author={author}
+					// markdown={markdown}
+					id={id}
 					closeModal={() => {
 						setIsModalOpen(false);
 					}}
 				/>
 			)}
-			<FormComment />
-			<ul style={{padding: '15px 0'}}>
+			{/* <FormComment /> */}
+			{/* <ul style={{padding: '15px 0'}}> */}
 				{/* {comments
 					? comments.map((item) => {
 							<Comments
@@ -75,8 +76,8 @@ export const PostContent = ({ title, author, markdown, comments }) => {
 							/>;
 					  })
 					: 'Loading...'} */}
-			{showComments()}
-			</ul>
+			{/* {showComments()} */}
+			{/* </ul> */}
 			<BtnDel />
 		</div>
 	);

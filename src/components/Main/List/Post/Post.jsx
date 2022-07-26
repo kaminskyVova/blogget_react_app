@@ -25,7 +25,8 @@ export const Post = ({ postData }) => {
 				title={title}
 				author={author}
 				markdown={markdown}
-				comments={comments}
+				id={postData.id}
+				// comments={comments}
 			/>
 			<Rating ups={ups} />
 			<PostTime date={date} />

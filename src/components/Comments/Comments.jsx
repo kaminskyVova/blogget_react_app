@@ -1,17 +1,34 @@
 import styles from './Comments.module.css';
-import { formatDate } from './../../utils/formatDate';
+import PropTypes from 'prop-types';
+import { formatDate } from '../../utils/formatDate';
+import Markdown from 'markdown-to-jsx';
 
-export const Comments = ({ author, text, date }) => {
+export const Comments = ({ comments }) => {
+	let commentsArr = '';
 
-	return (
-		<li className={styles.item}>
-			<h3 className={styles.author} size={18} tsize={22}>
-				{author}
-			</h3>
-			<p className={styles.comment} size={14} tsize={18}>
-				{text}
-				{formatDate(date)}
-			</p>
-		</li>
-	);
+	if (comments) {
+		if (comments.length === 0) {
+			commentsArr = 'Нет комментариев';
+		} else {
+			commentsArr = comments.map((comment) => (
+				<li key={comment.id} className={styles.item}>
+					<h3 className={styles.author}>{comment.author}</h3>
+					<div className={styles.comment}>
+						{/* <Markdown>{comment.body}</Markdown> */}
+						{comment.body}
+					</div>
+					<time className={styles.comment} dateTime={comment.created_utc}>
+						{formatDate(comment.created_utc)}
+					</time>
+				</li>
+			));
+		}
+	} else {
+		commentsArr = 'Загрузка...';
+	}
+	return <ul className={styles.list}>{commentsArr}</ul>;
+};
+
+Comments.propTypes = {
+	comments: PropTypes.array,
 };

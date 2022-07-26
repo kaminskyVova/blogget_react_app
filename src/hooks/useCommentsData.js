@@ -10,7 +10,7 @@ export const useCommentsData = (id) => {
 		if (!token || !id) return;
 
 		try {
-			fetch(`${URL_API}/comments/${id}`, {
+			fetch(`${URL_API}/comments/${id}?limit=5`, {
 				headers: {
 					Authorization: `bearer ${token}`,
 				},
